@@ -1,32 +1,54 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+<div class="app-wrap" id="app">
+    <header id="header" class="landing-max-width">
+    <div class="container">
+        <h1>Chris Rocha</h1>
+        <ul class="menu">
+        <li v-for="(route, i) in routes" :key="i"><router-link :to="{name:route.name}">{{ route.name }}</router-link></li>
+        </ul>
     </div>
-    <router-view/>
-  </div>
+    </header>
+
+    <main id="content" role="main" class="landing-max-width">
+    <div class="container">
+    <transition appear name="animate" mode="out-in">
+        <router-view/>
+    </transition>
+    </div>
+    </main>
+
+    <footer id="footer" class="landing-max-width">
+    <div class="container">
+        <hr />
+        <ul class="footer-menu clearfix">
+        <li v-for="(route, i) in routes" :key="i"><router-link :to="{name:route.name}">{{ route.name }}</router-link></li>
+        </ul>
+        <p class="legal">© {{ currentYear }} chrisrocha.com</p>
+    </div> <!--close sitewrap-->
+    </footer> <!--close footer-->
+</div>
 </template>
 
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+    @import './scss/style';
+</style>
 
-#nav {
-  padding: 30px;
+<script>
+const d = new Date();
+const n = d.getFullYear();
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
+export default {
+  name: 'App',
+  data: function() {
+    return {
+    //   pageData: Settings,
+      currentYear: n
     }
+  },
+  computed: {
+      routes() {
+          return this.$router.options.routes.filter(route => route.name != 'NotFound');
+      }
   }
 }
-</style>
+</script>
