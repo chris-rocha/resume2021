@@ -2,7 +2,7 @@
 <div class="inset">
 <div v-if="loading" class="loading"><span class="material-icons">autorenew</span></div>
 <transition-group tag="ul" class="two" name="bounce">
-    <li v-for="(c, i) in code" :key="`loop-${i}`">
+    <li v-for="(c, i) in sortCode" :key="`loop-${i}`">
         <a target="_blank" :href="c.link" :title="c.title">
             <img loading="lazy" width="300" height="240" :alt="c.title" class="scale-with-grid" :src="c.thumb" />
             <div class="caption">
@@ -23,11 +23,25 @@ export default {
     data: function() {
         return {
             loading: false,
-            code: []
+            code: [],
+            order: ['explore-branson', 'discover-puerto-rico', 'visit-savannah', 'bermuda', 'ecotours']
         }
     },
     mounted() {
         this.fetchCode();
+    },
+    computed: {
+        sortCode: function (){
+            let array = this.code;
+            let order =  this.order;
+            return array.sort((a, b) => {
+                if (order.indexOf(a.slug) > order.indexOf(b.slug)) {
+                    return 1;
+                } else {
+                    return -1;
+                }
+            });
+        }
     },
     methods: {
         async fetchCode() {
@@ -41,7 +55,6 @@ export default {
             }
             finally {
                 this.loading = false;
-                // console.log(this.code.body);
             }
         },
     }
