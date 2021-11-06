@@ -8,9 +8,9 @@
                         <img loading="lazy" height="100" width="100" src="/images/chris.jpg" alt="Chris Rocha" title="Chris Rocha" class="pic scale-with-grid" />
                   </picture>
                   <h5>Contact</h5>
-                  <p class="remove-bottom"><a href="tel:813-545-1429"><i class="material-icons">phone_iphone</i>
+                  <p class="remove-bottom"><a href="tel:813-545-1429"><span class="material-icons">phone_iphone</span>
                   813-545-1429</a></p>
-                  <p><a class="email" href="mailto:chris@chrisrocha.com"><i class="material-icons">email</i> chris@chrisrocha.com</a></p>
+                  <p><a class="email" href="mailto:chris@chrisrocha.com"><span class="material-icons">email</span> chris@chrisrocha.com</a></p>
             </div>
       </div>
 
